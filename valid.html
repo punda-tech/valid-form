@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LOG IN</title>
+</head>
+<body style="background-color:lightgray;">
+<h1 align="center">STUDENT LOG_IN</h1>
+<div style="padding: 30px; background-color:white; width: 400px; text-align:center; margin:0 auto;">
+<form style="font-size: 20px;" onsubmit="validate(); return false;">
+<label>USERNAME : </label>
+<input id="sname" placeholder="Enter your username" type="text"><br><br>
+
+<label>PASSWORD : </label>
+<input id="pass" placeholder="Enter your password" type="password" onkeyup="checkPassword()"><br><br>
+
+<div style="text-align: left; font-size: 16px; padding-left: 20px;">
+<p id="length">&#10060; At least 8 characters</p>
+<p id="upper">&#10060; At least 1 uppercase letter</p>
+<p id="lower">&#10060; At least 1 lowercase letter</p>
+<p id="digit">&#10060; At least 1 number</p>
+<p id="special">&#10060; At least 1 special character</p>
+</div><br>
+
+<button type="submit" style="background-color: dodgerblue; color: white; width: 100px; height:40px;">LOGIN</button>
+</form>
+</div>
+
+<script>
+function checkPassword() {
+let pass = document.getElementById("pass").value;
+let length = pass.length >= 8;
+let upper = /[A-Z]/.test(pass);
+let lower = /[a-z]/.test(pass);
+let digit = /[0-9]/.test(pass);
+let special = /[^A-Za-z0-9]/.test(pass);
+
+let lenMsg = document.getElementById("length");
+let upMsg = document.getElementById("upper");
+let lowMsg = document.getElementById("lower");
+let digMsg = document.getElementById("digit");
+let spMsg = document.getElementById("special");
+
+lenMsg.style.color = length ? "green" : "red";
+lenMsg.innerHTML = length ? "&#9989; At least 8 characters" : "&#10060; At least 8 characters";
+
+upMsg.style.color = upper ? "green" : "red";
+upMsg.innerHTML = upper ? "&#9989; At least 1 uppercase letter" : "&#10060; At least 1 uppercase letter";
+
+lowMsg.style.color = lower ? "green" : "red";
+lowMsg.innerHTML = lower ? "&#9989; At least 1 lowercase letter" : "&#10060; At least 1 lowercase letter";
+
+digMsg.style.color = digit ? "green" : "red";
+digMsg.innerHTML = digit ? "&#9989; At least 1 number" : "&#10060; At least 1 number";
+
+spMsg.style.color = special ? "green" : "red";
+spMsg.innerHTML = special ? "&#9989; At least 1 special character" : "&#10060; At least 1 special character";
+    }
+
+function validate() {
+let un = document.getElementById("sname").value;
+let ps = document.getElementById("pass").value;
+
+let length = ps.length >= 8;
+let upper = /[A-Z]/.test(ps);
+let lower = /[a-z]/.test(ps);
+let digit = /[0-9]/.test(ps);
+let special = /[^A-Za-z0-9]/.test(ps);
+
+if (un === "") {
+alert("Username should not be empty...!!");
+return;
+}
+
+if (!length || !upper || !lower || !digit || !special) {
+alert("Password does not meet the requirements.");
+return;
+}
+
+alert("Login successful...!!!");
+}
+</script>
+</body>
+</html>
